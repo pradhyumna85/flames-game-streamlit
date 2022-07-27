@@ -1,38 +1,69 @@
-from collections import namedtuple
-import altair as alt
-import math
 import pandas as pd
 import streamlit as st
+from flames import flames_game
+
+st.set_page_config(page_title='FLAMES Game', page_icon='🔥')
 
 """
-# Welcome to Streamlit!
+# Welcome to FLAMES game app!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
+Enter Name 1 and Name 2 below to see the result!
 """
 
+## hide menu and original footer
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+## customize footer
+footer="""<style>
+a:link , a:visited{
+color: blue;
+background-color: transparent;
+text-decoration: underline;
+}
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+a:hover,  a:active {
+color: red;
+background-color: transparent;
+text-decoration: underline;
+}
 
-    points_per_turn = total_points / num_turns
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: transparent;
+color: white;
+text-align: center;
+}
 
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
+a:link, a:visited {
+color: yellow;
+}
 
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+a:hover {
+color: red;
+}
+
+</style>
+<div class="footer">
+<p>Developed with ❤️ by <a style='display: block; text-align: center;' href="https://www.linkedin.com/in/pradyumnasingh/" target="_blank">Pradyumna Singh Rathore</a></p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
+
+name1 = st.text_input("Name 1")
+name2 = st.text_input("Name 2")
+
+if len(name1) and len(name2):
+    result = flames_game(name1,name2)
+
+    if result in ['Love','Affection','Marriage']:
+        st.success(result)
+    else:
+        st.error(result)
+
+

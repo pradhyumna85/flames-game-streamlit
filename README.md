@@ -1,6 +1,7 @@
-# Welcome to Streamlit!
+# Flames Streamlit APP!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire. :heart:
+Simple web app created for fun that takes 2 names as string inputs and then outputs "FLAMES" result.
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+This app can be a good and interesting python coding exercise for practise for beginners.
+
+Enjoy!
