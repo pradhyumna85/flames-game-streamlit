@@ -5,7 +5,7 @@ from flames import flames_game
 st.set_page_config(page_title='FLAMES Game', page_icon='🔥')
 
 """
-# Welcome to FLAMES game app!
+# Welcome to 🔥FLAMES❤️ game app!
 
 Enter Name 1 and Name 2 below to see the result!
 """
@@ -58,12 +58,13 @@ st.markdown(footer,unsafe_allow_html=True)
 name1 = st.text_input("Name 1")
 name2 = st.text_input("Name 2")
 
-if len(name1) and len(name2):
-    result = flames_game(name1,name2)
-
-    if result in ['Love','Affection','Marriage']:
-        st.success(result)
-    else:
-        st.error(result)
+if st.button('Show Result!'):
+    if len(name1) and len(name2):
+        result = flames_game(name1,name2)
+        
+        if result in ['Love','Affection','Marriage']:
+            st.success(result)
+        else:
+            st.error(result)
 
 
